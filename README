@@ -1,0 +1,46 @@
+README
+======
+
+* Todo esto por ahora es temporal.
+
+NATs Máquinas Virtuales
++++++++++++++++++++++++
+
+* scripts: nating.sh/desnating.sh
+
+* Por ahora para levantar los "NATs" contra las infraestructuras que queremos
+  tenga acceso desde internet, se esta haciendo los siguiente:
+  
+  Activar NAT:
+  cat api.oneiric.abadasoft.com | xargs ./nating.sh
+  * Donde el "fichero de configuracion" ( api.oneiric.abadasoft.com,
+    diablo.abadasoft.com, etc ) contiene "IP_maquina_virtual IP_publica
+    PUERTOS"
+  
+  Desactivar NAT:
+  cat api.oneiric.abadasoft.com | xargs ./desnating.sh
+  
+SNORT + BARNYARD2 ( SNORBY ) & OSSIM
+++++++++++++++++++++++++++++++++++++
+
+* script: 'snort_launch.sh'
+
+* Con un sólo script levntamos:
+  - snort       : un binario por interfaz
+  - barnyard2   : un binario por cada snort
+  - ossim-agent : agente de ossim instalado a traves de git.
+
+  * Las interfaces en las que queremos hacer que sniffe snort se colocan en
+    la variable INTERFACES del scritpt.
+  * Dicho script se encarga, a través de 'templates' colocados en "templates/",
+    de crear el fichero de configuración para snort ( y colocarlo en /etc/snort/ ),
+    y para barnyard2.
+  * En el directorio de "templates" hay un ejemplo del fichero de configuración del
+    plugin de ossim para "snortunified", este ni se crea ni se aplica de manera
+    automática, aún.
+
+BACKUP MÁQUINAS VIRTUALES
++++++++++++++++++++++++++
+
+* script: backup_mvs.sh
+    
